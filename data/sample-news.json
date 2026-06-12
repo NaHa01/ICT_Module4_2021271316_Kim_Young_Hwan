@@ -1,0 +1,11 @@
+{
+  "_comment": "Example response of GET /api/news (synthetic data). Same shape as the mock fallback in newsService when Naver API keys are missing. Titles/sources are in Korean because the live Naver news feed is Korean.",
+  "items": [
+    { "title": "코스피 1% 상승 마감…외국인·기관 동반 순매수", "link": "https://finance.naver.com/", "pubDate": "2026-06-12T11:54:00.000Z", "source": "한국경제" },
+    { "title": "원/달러 환율 5원 하락…1,380원선 공방", "link": "https://finance.naver.com/", "pubDate": "2026-06-12T11:48:00.000Z", "source": "연합뉴스" },
+    { "title": "코스닥 강보합 마감, 2차전지株 강세", "link": "https://finance.naver.com/", "pubDate": "2026-06-12T11:42:00.000Z", "source": "매일경제" },
+    { "title": "국제유가 상승…WTI 배럴당 78달러 돌파", "link": "https://finance.naver.com/", "pubDate": "2026-06-12T11:36:00.000Z", "source": "서울경제" },
+    { "title": "美 S&P500 사상 최고치 경신…기술주 랠리", "link": "https://finance.naver.com/", "pubDate": "2026-06-12T11:30:00.000Z", "source": "이데일리" },
+    { "title": "유로화 강세에 EUR/KRW 1,490원대 등락", "link": "https://finance.naver.com/", "pubDate": "2026-06-12T11:24:00.000Z", "source": "아시아경제" }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "_comment": "Example response of GET /api/financial-data (synthetic data). Same contract as the mock fallback generated when no external API keys are configured.",
+  "networkStatus": "Normal",
+  "source": "main",
+  "responseTimeMs": 263,
+  "timestamp": "2026-06-12T12:00:00.000Z",
+  "indices": [
+    { "id": "usdkrw", "name": "USD/KRW", "category": "fx", "value": 1380.5, "change": 5.8, "changePercent": 0.42, "direction": "up", "source": "kis" },
+    { "id": "eurkrw", "name": "EUR/KRW", "category": "fx", "value": 1490.2, "change": -3.1, "changePercent": -0.21, "direction": "down", "source": "kis" },
+    { "id": "kospi", "name": "KOSPI", "category": "kr_index", "value": 2650.12, "change": 12.34, "changePercent": 0.47, "direction": "up", "source": "kis" },
+    { "id": "kosdaq", "name": "KOSDAQ", "category": "kr_index", "value": 870.45, "change": -2.15, "changePercent": -0.25, "direction": "down", "source": "kis2" },
+    { "id": "kospi200", "name": "KOSPI200", "category": "kr_index", "value": 355.2, "change": 1.05, "changePercent": 0.3, "direction": "up", "source": "kis2" },
+    { "id": "sp500", "name": "S&P 500", "category": "us_index", "value": 5200.3, "change": 28.9, "changePercent": 0.56, "direction": "up", "source": "kis2" },
+    { "id": "nasdaq", "name": "NASDAQ", "category": "us_index", "value": 16400.0, "change": -45.2, "changePercent": -0.27, "direction": "down", "source": "kis2" }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "realtime-financial-monitor-backend",
+  "version": "1.0.0",
+  "description": "실시간 금융 지표 모니터링 - Node.js/Express 백엔드 (페일오버 + 자동복구)",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}

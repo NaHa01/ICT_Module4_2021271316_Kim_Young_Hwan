@@ -1,0 +1,543 @@
+/* 레이아웃 & 컴포넌트 스타일 - 7:3 분할, 라이트 모드. */
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 20px 24px;
+  gap: 18px;
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 22px;
+}
+
+.header__title h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.header__title p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.header__controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ===== Network Indicator ===== */
+.indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--indicator-color) 12%, white);
+  border: 1px solid color-mix(in srgb, var(--indicator-color) 35%, white);
+  transition: background-color 0.4s ease, border-color 0.4s ease;
+  min-width: 220px;
+}
+
+.indicator__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--indicator-color);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--indicator-color) 25%, transparent);
+  transition: background-color 0.4s ease;
+  flex-shrink: 0;
+}
+
+.indicator__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.indicator__label {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--indicator-color);
+  transition: color 0.4s ease;
+}
+
+.indicator__label--blink {
+  animation: blink 1s infinite;
+}
+
+.indicator__desc {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* ===== Simulation Button ===== */
+.sim-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sim-btn:hover:not(:disabled) {
+  border-color: var(--status-constrained);
+}
+
+.sim-btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.sim-btn--on {
+  background: var(--status-constrained);
+  border-color: var(--status-constrained);
+  color: #fff;
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--status-constrained) 40%, transparent);
+}
+
+/* ===== Layout 7:3 ===== */
+.layout {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
+  gap: 18px;
+  flex: 1;
+  min-height: 0;
+}
+
+.main-panel {
+  min-width: 0;
+}
+
+/* ===== Sections ===== */
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.section__title {
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text-primary);
+  padding-left: 10px;
+  border-left: 4px solid var(--border);
+}
+
+/* ===== Card Grid (반응형 3열 → 2열) ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.grid__empty {
+  color: var(--text-secondary);
+  padding: 40px;
+  text-align: center;
+}
+
+/* 펼친 차트는 카드 그리드 바깥(섹션 레벨)에 위치해 카드 행 전체 아래, 섹션 폭 전체를 차지한다. */
+.chart-cell {
+  margin-top: 16px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  /* button 기본 스타일 리셋 */
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+  appearance: none;
+}
+
+.card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.card--expanded {
+  border-color: var(--text-secondary);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ▼ 간략 차트 펼침 버튼 (본문의 상세 이동과 분리) */
+.card__expand {
+  border: 1px solid var(--border);
+  background: var(--bg-page);
+  color: var(--text-secondary);
+  font-size: 10px;
+  line-height: 1;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.card__expand:hover {
+  background: var(--border);
+  color: var(--text-primary);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--status-recovered);
+  outline-offset: 2px;
+}
+
+.card__name {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.card__category {
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: var(--bg-page);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.card__value {
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.card__change {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.card__arrow {
+  font-size: 13px;
+}
+
+.card__pct {
+  font-weight: 600;
+}
+
+.card__time {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* ===== 차트 패널 ===== */
+.chart-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 16px 8px;
+  margin-top: -2px;
+}
+
+.chart-panel--empty {
+  color: var(--text-secondary);
+  font-size: 13px;
+  padding: 32px;
+  text-align: center;
+}
+
+.chart-panel__caption {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+/* ===== Sidebar / News ===== */
+.sidebar {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: calc(100vh - 160px);
+}
+
+.sidebar__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+  margin-bottom: 8px;
+}
+
+.sidebar__header h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.sidebar__sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.news-list {
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.news-list__empty {
+  color: var(--text-secondary);
+  padding: 24px 4px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.news-item {
+  display: block;
+  padding: 12px 4px;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.15s ease;
+}
+
+.news-item:hover {
+  background: var(--bg-page);
+}
+
+.news-item__title {
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.45;
+  margin-bottom: 6px;
+}
+
+.news-item__meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.news-item__source {
+  font-weight: 600;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* 태블릿 2열 */
+  }
+  .sidebar {
+    max-height: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ============================================================
+   상세 페이지 (/detail/:id)
+   ============================================================ */
+.detail {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 22px 24px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.detail__back {
+  align-self: flex-start;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-card);
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.detail__back:hover {
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+.detail__loading {
+  color: var(--text-secondary);
+  padding: 60px;
+  text-align: center;
+}
+
+.detail__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 24px;
+}
+
+.detail__category {
+  font-size: 12px;
+  color: var(--text-secondary);
+  background: var(--bg-page);
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+.detail__title h1 {
+  margin: 8px 0 0;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+.detail__quote {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+.detail__value {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.detail__change {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.detail__section-title {
+  margin: 0 0 14px;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+/* 차트 섹션 */
+.detail__chart-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px 20px 12px;
+}
+.detail__chart-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.detail-chart--empty {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 80px 0;
+  font-size: 14px;
+}
+.detail-chart__caption {
+  font-size: 11px;
+  color: var(--text-secondary);
+  text-align: right;
+  padding: 4px 6px 0;
+}
+.detail__updated {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+/* 기간 탭 */
+.period-tabs {
+  display: inline-flex;
+  gap: 6px;
+  background: var(--bg-page);
+  padding: 4px;
+  border-radius: 10px;
+}
+.period-tab {
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.period-tab:hover {
+  color: var(--text-primary);
+}
+.period-tab--active {
+  background: var(--bg-card);
+  color: var(--text-primary);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+@media (max-width: 720px) {
+  .detail__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .detail__quote {
+    align-items: flex-start;
+  }
+}
