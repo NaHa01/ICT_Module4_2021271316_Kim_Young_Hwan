@@ -2,7 +2,7 @@
 
 A demo application that monitors exchange rates and Korean/US stock indices in real time — and keeps the data flowing through failures: it **detects a main-API failure → reroutes to a backup → recovers automatically**, so the user never sees a frozen or empty screen.
 
-> 🎬 **Demo video**: [Watch the demo](https://youtu.be/6b4sfYH8waE) <!-- TODO: replace with the actual video URL before pushing -->
+> 🎬 **Demo video**: [Watch the demo](https://youtu.be/6b4sfYH8waE)
 >
 > 🛠️ For the major bugs we hit and how we solved them, see [TROUBLESHOOTING.md](TROUBLESHOOTING.md).
 
