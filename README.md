@@ -292,3 +292,6 @@ Open **http://localhost:5173** in a browser. The Vite dev server proxies `/api` 
 - For screen layout and color tokens see `dashboard/src/styles/` (`tokens.css`, `app.css`); for the API contract see section 7, the route files (`src/routes/`), and the sample JSON in `data/`.
 - All external API keys are optional; if any are missing or failing, mock fallbacks keep the demo running.
 - For the root cause of the KIS rate limit (EGW00201) and the two-key design, see "Core design" in section 3.
+
+---
+AI assistance: An AI assistant was used to help draft and proofread the project documentation (README, TROUBLESHOOTING) and provided coding assistance during development.
